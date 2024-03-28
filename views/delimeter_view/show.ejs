@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        table, tr, th, td {
+            border: 1px solid black;
+        }
+        tr, th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>24DEV040 - Manil Shah</h1>
+    <h2>Delimeter Search</h2>
+
+    <table cellspacing="0">
+        <tr>
+            <th>f_name</th>
+            <th>l_name</th>
+            <th>email</th>
+            <th>state</th>
+            <th>phno</th>
+            <th>city</th>
+        </tr>
+        <tr>
+            <td>_</td>
+            <td>^</td>
+            <td>$</td>
+            <td>}</td>
+            <td>{</td>
+            <td>:</td>
+        </tr>
+    </table><br>
+
+    <form action="/delimeter" method="post">
+        <input type="text" name="qr" value="<%= qr %>">&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="GO">
+    </form><br><br>
+
+    <% if(result.length != 0) { %>
+        <table cellspacing="0">
+            <tr>
+                <% for(let i=0; i<fields.length; i++) { %>
+                    <th><%= fields[i].name %></th>
+                <% } %>
+            </tr>
+            <% for(let i=0; i<result.length; i++) { %>
+                <tr>
+                    <% for(let j=0; j<fields.length; j++) { %>
+                        <% if(fields[j].name == 'dob') { %>
+                            <td><%= (result[i][fields[j].name]).toDateString() %></td>
+                        <% } else { %>
+                            <td><%= result[i][fields[j].name] %></td>
+                        <% } %>
+                    <% } %>
+                </tr>
+            <% } %>
+        </table>
+    <% } else { %>
+        <p>Record Not Found</p>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log-in</title>
+    <style>
+        .parent {
+            display: flex;
+            width: 100%;
+        }
+        .child {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            padding: 330px 0;
+        }
+        input {
+            width: 240px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">
+            <span style="border: 1px solid black;border-radius: 20px;padding: 50px; background-color: beige;">
+                <p id="msg" style="color: red;"></p>
+                <form action="" id="reg">
+                    <label for="email">E-mail : </label><br>
+                    <input type="email" name="email" id="email"><br><br>
+                    <label for="pass">Password : </label><br>
+                    <input type="password" name="pass" id="pass"><br><br><br>
+                    <input type="button" value="SUBMIT" onclick="clk()"><br><br><br>
+                </form>
+                <a href="/forgotPass">forgotPassword?</a>
+            </span>
+        </div>
+    </div>
+    <script src="/js/login_js.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc</title>
+    <style>
+         .alg {
+            margin: auto;
+            width: 15%;
+            padding: 60px;
+        }
+        .display {
+            border: 1px solid black;
+            border-radius: 5px;
+            height: 40px;
+            width: 270px;
+            padding: 5px;
+        }
+        button {
+            margin-top: 10px;
+            width: 50px;
+            height: 35px;
+            margin-left: 9px;
+        }
+    </style>
+</head>
+<body>
+    <h1><center><span style="background-color: rgb(194, 173, 230);">Manil Shah - 24DEV040</span></center></h1>
+    <h1><center><b><u>Basic Calculator</u></b></center></h1>
+    
+    <div class="alg">
+        <div class="display"></div>
+        <div>
+            <button id="7" onclick="disp('7')">7</button>
+            <button id="8" onclick="disp('8')">8</button>
+            <button id="9" onclick="disp('0')">0</button>
+            <button id="+" onclick="disp('+')">+</button>
+        </div>
+        <div>
+            <button id="4" onclick="disp('4')">4</button>
+            <button id="5" onclick="disp('5')">5</button>
+            <button id="6" onclick="disp('6')">6</button>
+            <button id="-" onclick="disp('-')">-</button>
+        </div>
+        <div>
+            <button id="1" onclick="disp('1')">1</button>
+            <button id="2" onclick="disp('2')">2</button>
+            <button id="3" onclick="disp('3')">3</button>
+            <button id="*" onclick="disp('*')">*</button>
+        </div>
+        <div>
+            <button id="0" onclick="disp('0')">0</button>
+            <button id="c" onclick="clr()">C</button>
+            <button id="=" onclick="answer()">=</button>
+            <button id="/" onclick="disp('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        var que='';
+        var ct;
+        function disp(id) {
+            if(ct==1) {
+                document.getElementsByClassName("display")[0].innerHTML='';
+                que='';
+                ct=0;    
+            }
+            document.getElementsByClassName("display")[0].innerHTML+=id;
+            que+=id;
+        }
+        function clr() {
+            document.getElementsByClassName("display")[0].innerHTML='';
+            que='';
+        }
+        function answer() {
+            var ans=eval(que);
+            document.getElementsByClassName("display")[0].innerHTML=ans;  
+            ct=1;
+        }
+    </script>
+</body>
+</html>

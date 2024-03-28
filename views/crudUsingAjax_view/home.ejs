@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        .side_r{
+        float: right;
+        width: 40%;
+        margin-left: 25%;
+        margin-right: 10%;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        .parent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .prev, .next {
+            display: flex;
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="background-color: lightblue; text-align: center;">Job Appication Form</h1>
+        <p id="msg" style="background-color: red; color: white; text-align: center;"></p>
+        <form autocomplete="on" target="_blank" action="" method="post" id="form">
+            
+            <fieldset id="basic">
+                <legend>Basic Details</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number" name="id" value="" id="b_id" hidden/>
+                            <label for="f_name">First Name</label> &nbsp;&nbsp;
+                            <input type="text"name="f_name" id="f_name" tabindex="1" minlength="2" maxlength="15" onfocus="focusev('f_name')" onblur="blurev('f_name')" placeholder="Manil">
+                        </td>
+                        <td>
+        
+                            <label for="l_name">Last Name</label> &nbsp;&nbsp;
+                            <input type="text" name="l_name" id="l_name" tabindex="2" placeholder="Shah" minlength="2" maxlength="15" onfocus="focusev('l_name')" onblur="blurev('l_name')"/><br/><br/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label for="designation">Designation</label> &nbsp;&nbsp;
+                            <input type="text" name="designation" id="designation" tabindex="3" placeholder="Development" onfocus="focusev('designation')" onblur="blurev('designation')"/><br/><br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="mail">E-mail</label> &nbsp;&nbsp;
+                            <input type="text" name="mail" id="mail" tabindex="4" onfocus="focusev('mail')" onblur="blurev('mail')"/><br/><br/>
+                        </td>
+                        <td>
+                            <label for="phone_no">Phone No.</label> &nbsp;&nbsp;
+                            <input type="text" name="phone_no" id="phone_no" tabindex="5" onfocus="focusev('phone_no')" onblur="blurev('phone_no')"/><br/><br/>
+                        </td>
+                    </tr>
+                        
+                    <tr>
+                        <td>
+                            <label for="add1">Address 1</label> &nbsp;&nbsp;
+                            <input type="text" name="add1" id="add1" tabindex="6" placeholder="House no., street name, society name" size="27" onfocus="focusev('add1')" onblur="blurev('add1')"/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;<label for="add2">Address 2</label> &nbsp;&nbsp;
+                            <input type="text" name="add2" id="add2" tabindex="7" placeholder="Landmark, Area" onfocus="focusev('add2')" onblur="blurev('add2')"/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<label for="city">City</label> &nbsp;&nbsp;
+                            <input type="text" name="city" id="city" tabindex="8" onfocus="focusev('city')" onblur="blurev('city')"/><br/><br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="zip">Zip Code</label> &nbsp;&nbsp;
+                            <input type="text" name="zip" id="zip" tabindex="9" onfocus="focusev('zip')" onblur="blurev('zip')"/><br/><br/>
+                        </td>
+                        <td>
+                            <label for="state">State</label> &nbsp;&nbsp;
+                            <input type="text" name="state" id="state" tabindex="10" onfocus="focusev('state')" onblur="blurev('state')"/><br/><br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="gender">Gender</label> &nbsp;&nbsp;
+                            <input type="radio" name="gender" value="m" id="male"tabindex="11"/>
+                            <label for="male">Male</label>&nbsp;
+                            <input type="radio" name="gender" value="f" id="female"tabindex="12"/>
+                            <label for="female">Female</label><br/><br/>
+                        </td>
+                        <td>
+                            <label for="status">Relationship-Status</label> &nbsp;&nbsp;
+                            <select id="status" name="status" tabindex="13">
+                                <option value="default">--Select--</option>
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label for="dob">Date of Birth</label> &nbsp;&nbsp;
+                            <input type="text" name="dob" id="dob" tabindex="14" placeholder="DD-MM-YYYY" onfocus="focusev('dob')" onblur="blurev('dob')"/><br/><br/>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset id="education">
+                <% var i = 0 %>
+                <legend>Education Details</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <h2>SSC</h2>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label for="board_name">Name Of Board</label> &nbsp;
+                            <input type="text" name="board_name" id="board_name" tabindex="15" onfocus="focusev('board_name')" onblur="blurev('board_name')"/><br/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<label for="pass_year">Passing Year</label> &nbsp;
+                            <input type="text" name="pass_year" id="pass_year" tabindex="16" placeholder="YYYY" onfocus="focusev('pass_year')" onblur="blurev('pass_year')"/><br/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<label for="percentage">Percentage</label> &nbsp;
+                            <input type="text" name="percentage" id="percentage" tabindex="17" placeholder="00.00" onfocus="focusev('percentage')" onblur="blurev('percentage')"/><br/><br/><br/>
+                        </td>
+                    </tr>
+                </table>
+                <% i+= 1 %>
+                <hr/>
+
+                <table>
+                    <tr>
+                        <td>
+                            <h2>HSC</h2>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label for="hsc_board">Name Of Board</label> &nbsp;
+                            <input type="text" name="board_name" id="hsc_board" tabindex="18" onfocus="focusev('hsc_board')" onblur="blurev('hsc_board')"/><br/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<label for="hsc_year">Passing Year</label> &nbsp;
+                            <input type="text" name="pass_year" id="hsc_year" tabindex="19" placeholder="YYYY" onfocus="focusev('hsc_year')" onblur="blurev('hsc_year')"/><br/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp; <label for="hsc_percentage">Percentage</label> &nbsp;
+                            <input type="text" name="percentage" id="hsc_percentage" tabindex="20" placeholder="00.00" onfocus="focusev('hsc_percentage')" onblur="blurev('hsc_percentage')"/><br/><br/><br/>
+                        </td>
+                    </tr>
+                </table>
+                <% i+=1 %>
+                <hr/>
+
+                <table>
+                    <tr>
+                        <td>
+                            <h2>Bachelor</h2>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label for="bachelor_board">Name Of University</label> &nbsp;
+                            <input type="text" name="board_name" id="bachelor_board" tabindex="21" onfocus="focusev('bachelor_board')" onblur="blurev('bachelor_board')"/><br/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<label for="bachelor_year">Passing Year</label> &nbsp;
+                            <input type="text" name="pass_year" id="bachelor_year" tabindex="22" placeholder="YYYY" onfocus="focusev('bachelor_year')" onblur="blurev('bachelor_year')"/><br/><br/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<label for="bachelor_percentage">Percentage</label> &nbsp;
+                            <input type="text" name="percentage" id="bachelor_percentage" tabindex="23" placeholder="0.00" onfocus="focusev('bachelor_percentage')" onblur="blurev('bachelor_percentage')"/><br/><br/><br/>
+                        </td>
+                    </tr>
+                </table>
+                <% i+=1 %>
+                <hr/>
+
+                <table>
+                    <tr>
+                        <td>
+                            <h2>Master</h2>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label for="master_name">Name Of University</label> &nbsp;
+                            <input type="text" name="board_name" id="master_name" tabindex="24" onfocus="focusev('master_name')" onblur="blurev('master_name')"/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp; <label for="master_year">Passing Year</label> &nbsp;
+                            <input type="text" name="pass_year" id="master_year" tabindex="25" placeholder="YYYY" onfocus="focusev('master_year')" onblur="blurev('master_year')"/><br/>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<label for="master_percentage">Percentage</label> &nbsp;
+                            <input type="text" name="percentage" id="master_percentage" tabindex="26" placeholder="0.00" onfocus="focusev('master_percentage')" onblur="blurev('master_percentage')"/>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset id="exp">
+                <legend>Work Experience</legend>
+                <table>
+                    <% var i = 0 %>
+                    <tr>
+                        <td><br/>
+                            <label for="comp_name1">Company Name</label>&nbsp;
+                            <input type="text" name="comp_name" id="comp_name1" tabindex="27" placeholder="Full name" onfocus="focusev('comp_name1')" onblur="blurev('comp_name1')"/>&nbsp;&nbsp;<br/><br/>
+                        </td>
+                        <td><br/>
+                            <label for="comp_des1">Company Designation</label>&nbsp;
+                            <input type="text" name="comp_des" id="comp_des1" tabindex="28" onfocus="focusev('comp_des1')" onblur="blurev('comp_des1')"/>&nbsp;&nbsp;<br/><br/>
+                        </td>
+                        <td><br/>
+                            <label for="from1">From</label>&nbsp;
+                            <input type="text" name="from" id="from1" tabindex="29" placeholder="DD-MM-YYYY" onfocus="focusev('from1')" onblur="blurev('from1')"/>&nbsp;&nbsp;<br/><br/>
+                        </td>
+                        <td><br/>
+                            <label for="to1">Date</label>&nbsp;
+                            <input type="text" name="to" id="to1" tabindex="30" placeholder="DD-MM-YYYY" onfocus="focusev('to1')" onblur="blurev('to1')"/><br/><br/>
+                        </td>
+                    </tr>
+                    <% i+=1 %>
+                    <tr>
+                        <td>
+                            <label for="comp_name2">Company Name</label>&nbsp;
+                            <input type="text" name="comp_name" id="comp_name2" tabindex="31" placeholder="Full name" onfocus="focusev('comp_name2')" onblur="blurev('comp_name2')"/><br/><br/>
+                        </td>
+                        <td>
+                            <label for="comp_des2">Company Designation</label>&nbsp;
+                            <input type="text" name="comp_des" id="comp_des2" tabindex="32" onfocus="focusev('comp_des2')" onblur="blurev('comp_des2')"/><br/><br/>
+                        </td>
+                        <td>
+                            <label for="from2">From</label>&nbsp;
+                            <input type="text" name="from" id="from2" tabindex="33" placeholder="DD-MM-YYYY" onfocus="focusev('from2')" onblur="blurev('from2')"/><br/><br/>
+                        </td>
+                        <td>
+                            <label for="to2">Date</label>&nbsp;
+                            <input type="text" name="to" id="to2" tabindex="34" placeholder="DD-MM-YYYY" onfocus="focusev('to2')" onblur="blurev('to2')"/><br/><br/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="comp_name3">Company Name</label>&nbsp;
+                            <input type="text" name="comp_name" id="comp_name3" tabindex="35" placeholder="Full name" onfocus="focusev('comp_name3')" onblur="blurev('comp_name3')"/>
+                        </td>
+                        <td>
+                            <label for="comp_des3">Company Designation</label>&nbsp;
+                            <input type="text" name="comp_des" id="comp_des3" tabindex="36" onfocus="focusev('comp_des3')" onblur="blurev('comp_des3')"/>
+                        </td>
+                        <td>
+                            <label for="from3">From</label>&nbsp;
+                            <input type="text" name="from" id="from3" tabindex="37" placeholder="DD-MM-YYYY" onfocus="focusev('from3')" onblur="blurev('from3')"/>
+                        </td>
+                        <td>
+                            <label for="to3">Date</label>&nbsp;
+                            <input type="text" name="to" id="to3" tabindex="38" placeholder="DD-MM-YYYY" onfocus="focusev('to3')" onblur="blurev('to3')"/>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <div id="tech_lang">
+                <fieldset class="side_r">
+                    <legend>Technologies You Known</legend>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="knowledge" value="php" id="php_lbl" tabindex="51">
+                                <label for="php">PHP</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="php" value="begginer" id="php_begginer" tabindex="52">
+                                <label for="php_begginer">Begginer</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="php" value="mideator" id="php_mideator" tabindex="53">
+                                <label for="php_mideator">Mideator</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="php" value="expert" id="php_expert" tabindex="54">
+                                <label for="php_expert">Expert</label>
+                            </td>&nbsp;&nbsp;
+                        </tr>
+    
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="knowledge" value="mysql" id="mysql_lbl" tabindex="55">
+                                <label for="mysql">Mysql</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="mysql" value="begginer" id="mysql_begginer" tabindex="56">
+                                <label for="mysql_begginer">Begginer</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="mysql" value="mideator" id="mysql_mideator" tabindex="57">
+                                <label for="mysql_mideator">Mideator</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="mysql" value="expert" id="mysql_expert" tabindex="58">
+                                <label for="mysql_expert">Expert</label>
+                            </td>&nbsp;&nbsp;
+                        </tr>
+    
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="knowledge" value="laravel" id="laravel_lbl" tabindex="59">
+                                <label for="laravel">Laravel</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="laravel" value="begginer" id="laravel_begginer" tabindex="60">
+                                <label for="laravel_begginer">Begginer</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="laravel" value="mideator" id="laravel_mideator" tabindex="61">
+                                <label for="laravel_mideator">Mideator</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="laravel" value="expert" id="laravel_expert" tabindex="62">
+                                <label for="laravel_expert">Expert</label>
+                            </td>&nbsp;&nbsp;
+                        </tr>
+    
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="knowledge" value="oracle" id="oracle_lbl" tabindex="63">
+                                <label for="oracle">Oracle</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="oracle" value="oracle_begginer" id="oracle_begginer" tabindex="64">
+                                <label for="oracle_begginer">Begginer</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="oracle" value="oracle_mideator" id="oracle_mideator" tabindex="65">
+                                <label for="oracle_mideator">Mideator</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="radio" name="oracle" value="oracle_expert" id="oracle_expert" tabindex="66">
+                                <label for="oracle_expert">Expert</label>
+                            </td>&nbsp;&nbsp;
+                        </tr>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>Language Known</legend>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="lang" value="hindi" id="hindi" tabindex="39">
+                                <label for="hindi">Hindi</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="hindi_expert" value="read" id="hindi_read" tabindex="40">
+                                <label for="hindi_read">Read</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="hindi_expert" value="write" id="hindi_write" tabindex="41">
+                                <label for="hindi_write">Write</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="hindi_expert" value="speak" id="hindi_speak" tabindex="42">
+                                <label for="hindi_speak">Speak</label>
+                            </td>&nbsp;&nbsp;
+                        </tr>
+    
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="lang" value="english" id="english" tabindex="43">
+                                <label for="english">English</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="english_expert" value="read" id="english_read" tabindex="44">
+                                <label for="english_read">Read</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="english_expert" value="write" id="english_write" tabindex="45">
+                                <label for="english_write">Write</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="english_expert" value="speak" id="english_speak" tabindex="46">
+                                <label for="english_speak">Speak</label>
+                            </td>&nbsp;&nbsp;
+                        </tr>
+    
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="lang" value="gujarati" id="gujarati" tabindex="47">
+                                <label for="gujarati">Gujarati</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="gujarati_expert" value="read" id="gujarati_read" tabindex="48">
+                                <label for="gujarati_read">Read</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="gujarati_expert" value="write" id="gujarati_write" tabindex="49">
+                                <label for="gujarati_write">Write</label>
+                            </td>&nbsp;&nbsp;
+                            <td>
+                                <input type="checkbox" name="gujarati_expert" value="speak" id="gujarati_speak" tabindex="50">
+                                <label for="gujarati_speak">Speak</label>
+                            </td>&nbsp;&nbsp;
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+            <fieldset id="reference">
+                <legend>Reference Contact</legend>
+                <tabel>
+                    <tr>
+                        <td>
+                            <label for="ref_name1">Name</label>
+                            <input type="text" name="ref_name" id="ref_name1" tabindex="67" placeholder="Manil Shah" onfocus="focusev('ref_name1')" onblur="blurev('ref_name1')">
+                        </td>&nbsp;&nbsp;&nbsp;
+                        <td>
+                            <label for="ref_no1">Contact Number</label>
+                            <input type="text" name="ref_no" id="ref_no1" tabindex="68" onfocus="focusev('ref_no1')" onblur="blurev('ref_no1')">
+                        </td>&nbsp;&nbsp;&nbsp;
+                        <td>
+                            <label for="ref_relation1">Relation</label>
+                            <input type="text" name="ref_relation" id="ref_relation1" tabindex="69" onfocus="focusev('ref_relation1')" onblur="blurev('ref_relation1')"><br/><br/>
+                        </td>&nbsp;&nbsp;&nbsp;
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="ref_name2">Name</label>
+                            <input type="text" name="ref_name" id="ref_name2" tabindex="70" placeholder="Manil Shah" onfocus="focusev('ref_name2')" onblur="blurev('ref_name2')">
+                        </td>&nbsp;&nbsp;&nbsp;
+                        <td>
+                            <label for="ref_no2">Contact Number</label>
+                            <input type="text" name="ref_no" id="ref_no2" tabindex="71" onfocus="focusev('ref_no2')" onblur="blurev('ref_no2')">
+                        </td>&nbsp;&nbsp;&nbsp;
+                        <td>
+                            <label for="ref_relation2">Relation</label>
+                            <input type="text" name="ref_relation" id="ref_relation2" tabindex="72" onfocus="focusev('ref_relation2')" onblur="blurev('ref_relation2')">
+                        </td>&nbsp;&nbsp;&nbsp;
+                    </tr>
+                </tabel>
+            </fieldset>
+
+            <fieldset id="prefrence">
+                <legend>Prefrences</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <select name="pref" id="pref_location" tabindex="73" multiple>
+                                <option value="sola">Sola</option>
+                                <option value="shukan_mall">Shukan Mall</option>
+                                <option value="vadaj">Vadaj</option>
+                            </select>&nbsp;&nbsp;&nbsp;
+                        </td>
+
+                        <td>
+                            <label for="notice">Notice Period</label>    
+                            <input type="text" name="notice" id="notice" tabindex="74" placeholder="In months" onfocus="focusev('notice')" onblur="blurev('notice')"><br/><br/>&nbsp;&nbsp;
+
+                            <label for="exp_ctc">Expected CTC</label>    
+                            <input type="text" name="exp_ctc" id="exp_ctc" tabindex="75" placeholder="Rupees Per Annum" autocomplete="off" onfocus="focusev('exp_ctc')" onblur="blurev('exp_ctc')"><br/><br/>&nbsp;&nbsp;
+
+                            <label for="cur_ctc">Current CTC</label>    
+                            <input type="text" name="cur_ctc" id="cur_ctc" tabindex="76" placeholder="Rupees Per Annum" autocomplete="off" onfocus="focusev('cur_ctc')" onblur="blurev('cur_ctc')">&nbsp;&nbsp;
+                        </td>
+
+                        <td>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<label for="department">Department</label>
+                            <select id="department" name="department" tabindex="77">
+                                <option value="any">--Select--</option>
+                                <option value="design">Design</option>
+                                <option value="development">Development</option>
+                                <option value="marketing">Marketing</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+        </form>
+
+        <br><br>
+
+    <div class="parent">
+        <div class="prev">
+            <input type="button" value="Previous" id="prev" onclick="prev()">
+        </div>
+        <div class="next" id="next">
+            <input type="button" value="Next" id="next" onclick="return next()">
+        </div>
+    </div>
+
+    
+
+    <script src="./crudUsingAjax_js/ajax_js.js"></script>
+
+</body>
+</html>

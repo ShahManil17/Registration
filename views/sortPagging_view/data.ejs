@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Data</title>
+    <style>
+        table, tr, td, th {
+            border: 1px solid black;
+            font-size: 15px;
+        }
+        .parent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 0 100px;
+        }
+        .child {
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <% if(no == 1) { %>
+            <div class="child">
+                <form action="/home" method="post">
+                    <input type="submit" value="<<" disabled>
+                </form>
+            </div>
+            <div class="child">
+                <form action="/prev" method="post">
+                    <input type="submit" value="<" disabled>
+                </form>
+            </div>
+        <% }else { %>
+            <div class="child">
+                <form action="/home" method="post">
+                    <input type="submit" value="<<">
+                </form>
+            </div>
+            <div class="child">
+                <form action="/prev" method="post">
+                    <input type="submit" value="<">
+                </form>
+            </div>
+        <% } %>
+        <div class="child">
+            <p><%= no %></p>
+        </div>
+        <% if(no == 250) { %>
+            <div class="child">
+                <form action="/next" method="post" id="next">
+                    <input type="submit" value=">" disabled>
+                </form>
+            </div>
+            <div class="child">
+                <form action="/end"  method="post">
+                    <input type="submit" value=">>" id="end" disabled>
+                </form>
+            </div>
+        <% } else { %>
+            <div class="child">
+                <form action="/next" method="post" id="next">
+                    <input type="submit" value=">">
+                </form>
+            </div>
+            <div class="child">
+                <form action="/end"  method="post">
+                    <input type="submit" value=">>" id="end">
+                </form>
+            </div>
+        <% } %>
+    </div>
+    <table cellspacing="0">
+        <tr>
+            <th>
+                Id<br>
+                <a href="/showDetails?id=sid">Short</a>
+            </th>
+            <th>First Name<br>
+                <a href="/showDetails?id=f_name">Short</a>
+            </th>
+            <th>Last Name<br>
+                <a href="/showDetails?id=l_name">Short</a>
+            </th>
+            <th>Date of Birth<br>
+                <a href="/showDetails?id=dob">Short</a>
+            </th>
+            <th>Contact No.<br>
+                <a href="/showDetails?id=phno">Short</a>
+            </th>
+            <th>Email-id<br>
+                <a href="/showDetails?id=email">Short</a>
+            </th>
+            <th>City<br>
+                <a href="/showDetails?id=city">Short</a>
+            </th>
+            <th>State<br>
+                <a href="/showDetails?id=state">Short</a>
+            </th>
+            <th>Country<br>
+                <a href="/showDetails?id=country">Short</a>
+            </th>
+            <th>Blood Group<br>
+                <a href="/showDetails?id=blood_group">Short</a>
+            </th>
+            <th>Created At<br>
+                <a href="/showDetails?id=created_at">Short</a>
+            </th>
+        </tr>
+        <% for(let i=0; i<data.length; i++) { %>
+            <tr>
+                <td><%= data[i].sid %></td>
+                <td><%= data[i].f_name %></td>
+                <td><%= data[i].l_name %></td>
+                <td><%= data[i].dob %></td>
+                <td><%= data[i].phno %></td>
+                <td><%= data[i].email %></td>
+                <td><%= data[i].city %></td>
+                <td><%= data[i].state %></td>
+                <td><%= data[i].country %></td>
+                <td><%= data[i].blood_group %></td>
+                <td><%= data[i].created_at %></td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>

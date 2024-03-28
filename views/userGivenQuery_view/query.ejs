@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query</title>
+</head>
+<body>
+    <% if(temp==-1) { %>
+        <p><%= msg %></p>
+    <% } %>
+    <form action="/show" method="post">
+        <input type="text" placeholder="Enter Your Query" name="ip">&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="GO">
+    </form>
+</body>
+</html>

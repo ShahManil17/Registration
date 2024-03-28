@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>dynamic_table</title>
+    <style>
+        .bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .top {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        table, tr, td {
+            border: 2px solid black;
+        } 
+        tr:nth-child(odd)>td:nth-child(even) {
+            background-color:lightblue;
+        }
+        tr:nth-child(even)>td:nth-child(odd) {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <center><h2><span style="background-color: rgb(191, 191, 234);">Manil Shah - 24DEV040</span></h2>
+    <h2>dynamic table</h2>
+    <table cellspacing="0" cellpadding="30" id="demo">
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table><br/><br/></center>
+    <div class="bottom">
+        <input type="button" value="Add Row" onclick="add_row()">
+        <input type="button" value="Remove Row" onclick="del_row()">
+    </div>
+    <br/><br/>
+    <div class="top">
+        <input type="button" value="Add Column" onclick="add_col()">
+        <input type="button" value="Remove Column" onclick="del_col()">
+    </div>
+    <script>
+        
+        function add_row() {
+            var table=document.getElementById("demo");
+            var row_count=table.rows.length;
+            var cols=table.rows[0].cells.length;
+            var row=table.insertRow(row_count);
+            var cell;
+            for(var i=0; i<cols; i++) {
+                cell=row.insertCell(i);
+            }
+        }
+
+        function del_row() {
+            var table=document.getElementById("demo");
+            var row_count=table.rows.length;
+            if(row_count>2) {
+                table.deleteRow(row_count-1);
+            }
+            else {
+                alert("There Must Be minimum 2 rows");
+            }
+        }
+
+
+        function add_col() {
+            var table=document.getElementById("demo");
+            var row_count=table.rows.length;
+            var col_count=table.rows[0].cells.length;
+            var row=table.rows;
+            for(let i=0; i<row_count; i++) {
+                row[i].insertCell(col_count);
+            }
+        }
+
+        function del_col() {
+            var table=document.getElementById("demo");
+            var row_count=table.rows.length;
+            var col_count=table.rows[0].cells.length;
+            var row=table.rows;
+            var j=1;
+            if(col_count>2) {
+                for(var i=0; i<row_count; i++) {
+                    row[i].deleteCell(j);
+                }
+            }
+            else {
+                alert("There Must Be minimum 2 Columns");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

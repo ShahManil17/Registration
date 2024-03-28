@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1, p {
+            text-align: center;
+        }
+        table {
+            padding: 50px;
+            margin: 0 auto;
+        }
+        td {
+            background-color: antiquewhite;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank you for the Logging!</h1>
+    <table>
+        <tr>
+            <td><p><a href="/display/dynamic_table">Dynamic table</a></p></td>
+            <td><p><a href="/display/cucku_cube">Cucku Cube</a></p></td>
+            <td><p><a href="/display/tic_tac_toe">Tic Tac Toe</a></p></td>
+            <td><p><a href="/display/js_exec">JavaScript Events</a></p></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <p onclick="clk()">JavaScript Exersice</p>
+                <p style="display: none;" id="hide">
+                    <a href="/js_exec/saperate_VowCons?str=Manil">Saperate Vowels & Consonents</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/saperate_OddEven?arr=1,8,56,4,2,3">Saperate Odd & Even</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/groupBy">Grouping With Obj Key</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/factorial?n=6">Fectorial</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/vovInStr?arr=Manil,Shah">Vowel Count Of Every String</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/longestStr_count?arr=Manil,Shah">Vowel Count Of Longest String</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/palindrom?str=abccba">Palindrom</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/calc?arr=10,5,add">Basic Calculator</a>&nbsp;&nbsp;&nbsp;
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><p><a href="/display/calc">Basic Calculator</a></p></td>
+            <td><p><a href="/delimeter">Delimeter Search</a></p></td>
+            <td><p><a href="/ajaxCity">Ajax City Task</a></p></td>
+            <td><p><a href="/showDetails">Database Sorting With Paggination</a></p></td>
+        </tr>
+        <tr>
+            <td><p><a href="/userQuery">User Given Query With Paggination</a></p></td>
+            <td><p><a href="/resultDatabase">Result Database</a></p></td>
+            <td><p><a href="/crudUsingAjax">Crud Using Ajax</a></p></td>
+            <td><p><a href="/attandanceDatabase">Attandance Database</a></p></td>
+        </tr>
+    </table>
+
+    <script>
+        function clk() {
+            document.getElementById('hide').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

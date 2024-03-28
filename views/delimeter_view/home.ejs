@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        table, tr, th, td {
+            border: 1px solid black;
+        }
+        tr, th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>24DEV040 - Manil Shah</h1>
+    <h2>Delimeter Search</h2>
+
+    <table cellspacing="0">
+        <tr>
+            <th>f_name</th>
+            <th>l_name</th>
+            <th>email</th>
+            <th>state</th>
+            <th>phno</th>
+            <th>city</th>
+        </tr>
+        <tr>
+            <td>_</td>
+            <td>^</td>
+            <td>$</td>
+            <td>}</td>
+            <td>{</td>
+            <td>:</td>
+        </tr>
+    </table><br>
+
+    <form action="/delimeter" method="post">
+        <input type="text" name="qr">&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="GO">
+    </form>
+</body>
+</html>

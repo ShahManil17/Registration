@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            padding: 30px;
+        }
+    </style>
+</head>
+<body style="background-color: lightyellow;">
+    
+    <center>
+        <h1><span style="background-color: rgb(207, 150, 225);">Manil Shah - 24DEV040</span></h1>
+        <h1>Table Game</h1>
+        <div>
+            score: <span id="score">0</span>
+        </div>
+        <div>
+            Time: <span id="time">10</span>
+        </div>
+    </center>
+    <table id="demo" cellspacing="5" cellpadding="50" align="center">
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        var table=document.getElementById("demo");
+        var row_count=2;
+        var col_count=2;
+        var score=0;
+        time=10;
+
+        setInterval(function() {
+            time--;
+            document.getElementById("time").innerHTML=time;
+            if(time==0) {
+                alert("your Score is : "+score);
+                location.reload();
+                score=0;
+                time=10;
+            }
+        }, 1000)
+        generaterandom_cell();
+        function generaterandom_cell() {
+            let random_row=Math.floor(Math.random()*row_count);
+            let random_cell=Math.floor(Math.random()*col_count);
+            let color=random_bg_color();
+            let table=document.getElementById("demo");
+            console.log("hello");
+
+            for(let i=0; i < table.rows.length; i++) {
+                for(let j=0; j < table.rows[i].cells.length; j++) {
+                    table.rows[i].cells[j].style.backgroundColor=color;
+                }
+            }
+            var col=table.rows[random_row].cells[random_cell];
+            col.style.opacity='0.7';
+            col.addEventListener("click", myFunc);
+
+            function myFunc() {
+                if(row_count<10) add_row();
+                if(col_count<10) add_col();
+                score++;
+                document.getElementById("score").innerHTML=score;
+                col.removeEventListener("click", myFunc);
+                col.style.opacity='1';
+                generaterandom_cell();
+            }
+        }
+
+        function random_bg_color() {
+            var x=Math.floor(Math.random()*256);
+            var y=Math.floor(Math.random()*256);
+            var z=Math.floor(Math.random()*256);
+            var a =1.0;
+            return "rgba("+x+","+y+","+z+")";
+        }
+
+        function add_row() {
+            var table=document.getElementById("demo");
+            var rowcount=table.rows.length;
+            var colcount=table.rows[0].cells.length;
+            var row=table.insertRow(rowcount.length);
+            var cell;
+            for(var i=0; i<colcount; i++) {
+                cell=row.insertCell(i);
+            }
+            row_count++;
+        }
+
+        function add_col() {
+            var table=document.getElementById("demo");
+            var rowcount=table.rows.length;
+            var colcount=table.rows[0].cells.length;
+            var rows=table.rows;
+            for(i=0; i<rowcount; i++) {
+                rows[i].insertCell(colcount);
+            }
+            col_count++;
+        }
+    </script>
+</body>
+</html>

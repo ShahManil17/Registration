@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <style>
+        h1, h2 {
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 80px;
+        }
+        table, tr, th, td {
+            border: 1px solid black;
+        }
+        tr, th, td {
+            padding: 30px;
+            text-align: center;
+        }
+        .parent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 0 100px;
+        }
+        .child {
+            width: 20%;
+        }
+        .drop {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Manil Shah - 24DEV040
+    </h1>
+    <h2>
+        Attendance Table
+    </h2>
+    <div class="drop">
+        <form action="/attandanceDatabase" method="get">
+            <select name="month" id="month">
+                <option value="12" <% if(temp==0 || month==12) { %>selected<% } %>>December</option>
+                <option value="1" <% if(month==1) { %>selected<% } %>>January</option>
+                <option value="2" <% if(month==2) { %>selected<% } %>>February</option>
+            </select>
+            <select name="year" id="year">
+                <option value="2023" <% if(temp==0 || year==2023) { %>selected<% } %>>2023</option>
+                <option value="2024" <% if(year==2024) { %>selected<% } %>>2024</option>
+            </select>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    <div class="parent">
+        <% if(no==1) { %>
+        <div class="child">
+            <a href="/attandanceDatabase/move/home">
+                <button disabled><<</button>
+            </a>
+        </div>
+        <div class="child">
+            <a href="/attandanceDatabase/move/prev">
+                <button disabled><</button>
+            </a>
+        </div>
+        <% } else { %>
+            <div class="child">
+                <a href="/attandanceDatabase/move/home">
+                    <button><<</button>
+                </a>
+            </div>
+            <div class="child">
+                <a href="/attandanceDatabase/move/prev">
+                    <button><</button>
+                </a>
+            </div>
+        <% } %>
+        <div class="child">
+            <p><%= no %></p>
+        </div>
+        <% if(no==6) { %>
+            <div class="child">
+                <a href="/attandanceDatabase/move/next">
+                    <button disabled>></button>
+                </a>
+            </div>
+            <div class="child">
+                <a href="/attandanceDatabase/move/end">
+                    <button disabled>>></button>
+                </a>
+            </div>
+        <% } else { %>
+            <div class="child">
+                <a href="/attandanceDatabase/move/next">
+                    <button>></button>
+                </a>
+            </div>
+            <div class="child">
+                <a href="/attandanceDatabase/move/end">
+                    <button>>></button>
+                </a>
+            </div>
+        <% } %>
+    </div>
+    <table cellspacing="0" style="margin: 0 auto;">
+        <tr>
+            <th>Student Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Present Day</th>
+            <th>Attendance Persentage</th>
+        </tr>
+        <% for(let i=0; i<data.length; i++) { %>
+            <tr>
+                <td><%= data[i].sid %></td>
+                <td><%= data[i].f_name %></td>
+                <td><%= data[i].l_name %></td>
+                <td><%= data[i].count %></td>
+                <td><%= data[i].percentage %></td>
+            </tr>
+        <% } %>
+    </table>
+    <p>Month:<%= month %> Year:<%= year %></p>
+</body>
+</html>

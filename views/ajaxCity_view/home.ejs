@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div id="demo"></div>
+    <select name="state" id="state" onchange="change()">
+        <option value="default">--Select--</option>
+        <% result.forEach(element => { %>
+            <option value="<%= element.state_name %>"><%= element.state_name %></option>
+        <% }); %>
+    </select>
+    &nbsp;&nbsp;&nbsp;
+    <select name="city" id="city" disabled>
+        <option value="default">--Select--</option>
+    </select>
+
+    <script>
+        document.getElementById('demo').innerHTML = `<h1>Welcome!</h1>`
+        async function change() {
+            if(document.getElementById('state').value != 'default') {
+                document.getElementById('city').disabled = false;
+                let state = document.getElementById('state').value;
+                let response = await fetch(`/getCities/${state}`);
+                let cities = await response.json();
+                let qr = `<option value="default">--Select--</option>`;
+                cities.forEach(element => {
+                    qr += `<option value="${element.city_name}">${element.city_name}</option>`
+                });
+                console.log(qr);
+                document.getElementById('city').innerHTML = qr;
+            }
+            else {
+                document.getElementById('city').disabled = true;
+                document.getElementById('city').innerHTML = `<option value="default">--Select--</option>`;
+            }
+
+
+        }
+    </script>
+</body>
+</html>

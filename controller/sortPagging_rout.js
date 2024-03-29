@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const mysql = require("mysql");
+const { auth } = require("./midelwer/auth");
 
 const con = mysql.createConnection({
     host: 'localhost',
@@ -12,11 +13,14 @@ var ct=0;
 var srt = `sid`;
 var temp=0;
 
-router.get('/showDetails', (req, res)=> {
+router.get('/showDetails',auth, (req, res)=> {
     ct=0;
-    if(temp != 0) {
+    // if(temp != 0) {
+    //     srt=req.query.id;
+    //     console.log(srt+ "In if");
+    // }
+    if(req.query.id) {
         srt=req.query.id;
-        console.log(srt+ "In if");
     }
     con.query(`select * from student_master ORDER BY ${srt} limit 200 offset ?`,[ct], function(err, result) {
         console.log("Req "+req.query.id);
@@ -27,7 +31,7 @@ router.get('/showDetails', (req, res)=> {
     temp++;
 })
 
-router.post('/next', (req, res)=> {
+router.post('/next',auth, (req, res)=> {
     ct+=200;
     con.query(`select * from student_master ORDER BY ${srt} limit 200 offset ?`,[ct], function(err, result) {
         let no = (ct/200)+1;
@@ -37,7 +41,7 @@ router.post('/next', (req, res)=> {
     console.log("In Next : "+ct);
 })
 
-router.post('/prev', (req, res)=> {
+router.post('/prev',auth, (req, res)=> {
     ct-=200;
     con.query(`select * from student_master ORDER BY ${srt} limit 200 offset ?`,[ct], function(err, result) {
         let no = (ct/200)+1;
@@ -47,7 +51,7 @@ router.post('/prev', (req, res)=> {
     console.log("In Prev : "+ct);
 })
 
-router.post('/home', (req, res)=> {
+router.post('/home',auth, (req, res)=> {
     ct=0;
     con.query(`select * from student_master ORDER BY ${srt} limit 200 offset ?`,[ct], function(err, result) {
         let no = (ct/200)+1;
@@ -56,7 +60,7 @@ router.post('/home', (req, res)=> {
     console.log("In Home : "+ct);
 })
 
-router.post('/end', (req, res)=> {
+router.post('/end',auth, (req, res)=> {
     ct=49800;
     con.query(`select * from student_master ORDER BY ${srt} limit 200 offset ?`,[ct], function(err, result) {
         let no = (ct/200)+1;

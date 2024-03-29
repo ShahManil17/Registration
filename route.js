@@ -2,6 +2,8 @@ const express = require('express');
 const mysql = require('mysql');
 const md5 = require('md5');
 const bodyParser=require('body-parser');
+const jwt = require("jsonwebtoken")
+var cookieParser = require('cookie-parser')
 
 const vovCon=require('./controller/js_exec/saperate_VowConst');
 const oddEven=require('./controller/js_exec/saperate_OddEven');
@@ -21,11 +23,13 @@ const crudUsingAjax = require('./controller/crudUsingAjax_rout')
 const attandanceDatabase = require('./controller/attandanceDatabase_rout')
 
 const app=express();
-const port=8015;
+const port=8016;
 const ShortUniqueId = require('short-unique-id');
+const { auth } = require('./controller/midelwer/auth');
 
 
 app.use(express.static("public/"));
+app.use(cookieParser())
 
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -82,6 +86,19 @@ app.get('/checkMail/:mail/:pass', async(req, res)=> {
         let pass_check = await executeQuery(`select pass, salt from users where email = '${req.params.mail}';`)
         let enc_pass = md5(`${req.params.pass}`+`${pass_check[0].salt}`);
         if(enc_pass == pass_check[0].pass) {
+
+
+            let data = {
+                expiresIn: '1d',
+                password : pass_check[0].pass,
+                email : req.params.mail
+            }
+
+            let token = jwt.sign(data,"manil");
+            // console.log(enc_pass);
+            res.cookie("token" ,token, {maxAge: 24 * 60 * 60 * 1000});
+
+
             res.send({"check":"valid", "mail":"cantuse"})
         }
         else {
@@ -109,7 +126,6 @@ app.get('/activateUser/:code', async(req, res)=> {
         await executeQuery(`delete from users where activation_code = '${req.params.code}';`);
         res.redirect('/')
     }
-    res.end();
 })
 
 app.post('/login', async(req, res)=> {
@@ -121,19 +137,17 @@ app.post('/login', async(req, res)=> {
     await executeQuery(q);
 
     res.redirect('/loginPage')
-    
-    res.end();
 })
 
 app.get('/loginPage', (req, res)=> {
     res.render('login')
 })
 
-app.get('/success', (req, res)=> {
+app.get('/success',auth, (req, res)=> {
     res.render('link')
 })
 
-app.get('/display/:prog', (req, res)=> {
+app.get('/display/:prog',auth, (req, res)=> {
     res.render(req.params.prog)
 })
 
@@ -149,8 +163,8 @@ app.get('/js_exec/:prog_name', (req, res)=> {
             res.write(ans.sugg.toString());
             res.write("Vowels In the string are : "+ans.vowelStr.toString()+"\n");
             res.write("Consonents In the string are : "+ans.consonentStr.toString()+"\n");
+            res.end()
             
-            res.end();
             break;
 
         case 'saperate_OddEven':
@@ -162,8 +176,7 @@ app.get('/js_exec/:prog_name', (req, res)=> {
             res.write(ans.sugg.toString());
             res.write("Odd Nos. in the array is : "+ans.oddArr.toString()+"\n");
             res.write("Even Nos. in the array is : "+ans.evenArr.toString()+"\n");
-
-            res.end();
+            res.end()
             break;
     
         case 'groupBy':
@@ -176,8 +189,7 @@ app.get('/js_exec/:prog_name', (req, res)=> {
             ];
             ans=groupBy.group(arrOg);
             res.write("Object After Perfoming Group by is : "+JSON.stringify(ans));
-
-            res.end();
+            res.end()
             break;
 
         case 'factorial':
@@ -192,8 +204,7 @@ app.get('/js_exec/:prog_name', (req, res)=> {
                 let ans=fectorial.fect(que);
                 res.write("Factorial of "+que+" is "+ans.toString());
             }
-
-            res.end();
+            res.end()
             break;
 
         case 'vovInStr':
@@ -203,8 +214,7 @@ app.get('/js_exec/:prog_name', (req, res)=> {
             let strArr = req.query.arr.split(',');
             ans = vovInStr.count(strArr);
             res.write("Vowel count of every strinf is : "+ans.toString());
-
-            res.end();
+            res.end()
             break;
 
         case 'longestStr_count':
@@ -214,8 +224,7 @@ app.get('/js_exec/:prog_name', (req, res)=> {
             let strArr2 = req.query.arr.split(',');
             ans=longestStr.count(strArr2);
             res.write("Vowel Count of the longest String in the Array is "+ans.toString());
-
-            res.end();
+            res.end()
             break;
 
         case 'palindrom':
@@ -224,8 +233,7 @@ app.get('/js_exec/:prog_name', (req, res)=> {
             // let str="abccba";
             ans=palindrom.chk(req.query.str);
             res.write(ans);
-
-            res.end();
+            res.end()
             break;
 
         case 'calc':
@@ -243,8 +251,7 @@ app.get('/js_exec/:prog_name', (req, res)=> {
                 ans=calc.calc(num1, num2, operator);
                 res.write(num1+" "+operator+" by "+num2+" = "+ans);
             }
-
-            res.end();
+            res.end()
             break;
 
         default:

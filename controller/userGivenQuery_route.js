@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const mysql = require("mysql");
 const { route } = require("./delimeter_rout");
+const { auth } = require("./midelwer/auth");
 
 var con = mysql.createConnection({
     host: 'localhost',
@@ -22,7 +23,7 @@ router.get('/userQuery', (req, res)=> {
     res.render('../views/userGivenQuery_view/query', {temp:temp, msg:msg});
 })
 
-router.post('/show', (req, res)=> {    
+router.post('/show',auth, (req, res)=> {    
     temp=0;
 
     if(req.query.id == undefined) {
@@ -46,7 +47,7 @@ router.post('/show', (req, res)=> {
     }
 })
 
-router.get('/move', (req, res)=> {
+router.get('/move',auth, (req, res)=> {
     if(req.query.id == 'next') {
         con.query(que, function(err, result, fields) {
             ct=parseInt(req.query.ct)+5;
@@ -112,7 +113,7 @@ router.get('/move', (req, res)=> {
     }
 })
 
-router.get('/short', (req, res)=> {
+router.get('/short',auth, (req, res)=> {
     que+=` orderby ${req.query.nm}`;
     con.query(que, function(err, result, fields) {
         ct=0;

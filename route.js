@@ -116,7 +116,7 @@ app.get('/checkMail/:mail/:pass', async(req, res)=> {
 app.get('/activateUser/:code', async(req, res)=> {
     let q = `select created_at from users where activation_code = '${req.params.code}';`;
     let result = await executeQuery(q);
-    var temp = result[0].created_at.toString().slice(4, 24)
+    let temp = result[0].created_at.toString().slice(4, 24)
     let old_date = new Date(temp);
     let time_diff = Math.floor((dateObject.getTime()-old_date.getTime())/60000);
     if(time_diff < 1) {

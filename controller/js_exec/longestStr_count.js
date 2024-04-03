@@ -29,7 +29,6 @@ function count(str) {
                     vowelCount++;
                 }
             }
-            // console.log("Vowel count of String "+str[i]+" is : "+vowelCount);
         }
     }
 

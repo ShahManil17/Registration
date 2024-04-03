@@ -1,12 +1,13 @@
 const router = require('express').Router();
-const mysql = require('mysql');
+// const mysql = require('mysql');
+const con = require('../database/connection');
 
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'merge_db'
-});
+// const con = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'password',
+//     database: 'merge_db'
+// });
 
 router.get('/delimeter', (req, res)=> {
     res.render('../views/delimeter_view/home');
@@ -193,7 +194,6 @@ router.post('/delimeter', (req, res)=> {
     }
 
     sql=sql.slice(0, sql.length-5);
-    console.log(sql);
 
     con.query(sql, function(err, result, fields) {
         if(err) {

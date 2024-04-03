@@ -1,3 +1,5 @@
+alert('aaa')
+
 let ct = 0;
 let basic = document.getElementById('basic');
 let edu = document.getElementById('education');
@@ -457,8 +459,10 @@ async function get_data(id) {
 }
 
 let id = window.location.href.split('/')
-if(id[3] != '') {
-    get_data(id[3]);
+console.log(id);
+if(id[4]) {
+    console.log('in get data');
+    get_data(id[4]);
 }
 
 function focusev(id) {

@@ -1,12 +1,13 @@
 const router = require("express").Router();
-const mysql = require("mysql");
+// const mysql = require("mysql");
+const con = require('../database/connection');
 
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'merge_db'
-});
+// const con = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'password',
+//     database: 'merge_db'
+// });
 
 var ct=0;
 var pg=1;

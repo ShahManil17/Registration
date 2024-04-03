@@ -30,8 +30,6 @@ function checkVowel(str) {
             sugg += element+" is Not the Character\n";
         }
     });
-    // console.log("Vowels in the String is : "+vowelStr);
-    // console.log("Consonents in the string is : "+consonentStr);
 
     return {vowelStr, consonentStr, sugg};
 }

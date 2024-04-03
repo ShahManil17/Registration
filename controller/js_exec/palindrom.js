@@ -16,7 +16,6 @@ function chk(str) {
     let len = str.length;
     for (let i=0; i<len/2; i++) {
         if(str[i] != str[len-1-i]) {
-            // console.log("String "+str+" Is Not Palindrome!");
             demo="String "+str+" Is Not Palindrome!";
             return demo;
         }
@@ -25,7 +24,5 @@ function chk(str) {
 
     return demo;
 }
-
-// console.log(Math.ceil(5/2));
 
 module.exports={chk};

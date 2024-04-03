@@ -23,10 +23,8 @@ function count(str) {
             }
         }
         ans+=`'`+str[i]+`':`+vowelCount+`,`;
-        // console.log("No. Of Vowels in the String is : "+vowelCount);
     }
     ans+=`}`;
-    // console.log(ans);
 
     return ans;
 }

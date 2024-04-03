@@ -1,50 +1,24 @@
-const express = require('express');
-const mysql = require('mysql');
+const router = require("express").Router();
+// const mysql = require('mysql');
+const con = require('../database/connection')
 const md5 = require('md5');
-const bodyParser=require('body-parser');
 const jwt = require("jsonwebtoken")
-var cookieParser = require('cookie-parser')
 
-const vovCon=require('./controller/js_exec/saperate_VowConst');
-const oddEven=require('./controller/js_exec/saperate_OddEven');
-const groupBy=require('./controller/js_exec/groupBy');
-const fectorial=require('./controller/js_exec/fectorial');
-const vovInStr=require('./controller/js_exec/vowelInStr');
-const longestStr=require('./controller/js_exec/longestStr_count');
-const palindrom=require('./controller/js_exec/palindrom');
-const calc=require('./controller/js_exec/calc');
-
-const delimeter = require('./controller/delimeter_rout')
-const ajaxCity = require('./controller/ajaxCity_rout')
-const sortPagging = require('./controller/sortPagging_rout')
-const userQuery = require('./controller/userGivenQuery_route')
-const resultDatabase = require('./controller/resultDatabase_rout')
-const crudUsingAjax = require('./controller/crudUsingAjax_rout')
-const attandanceDatabase = require('./controller/attandanceDatabase_rout')
-
-const app=express();
-const port=8016;
 const ShortUniqueId = require('short-unique-id');
-const { auth } = require('./controller/midelwer/auth');
-
-
-app.use(express.static("public/"));
-app.use(cookieParser())
-
-app.use(bodyParser.urlencoded({extended: false}));
+const { auth } = require('./midelwer/auth');
 
 const uid = new ShortUniqueId();
 
 const dateObject = new Date();
 
-app.set('view engine', 'ejs');
-
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'merge_db'
-});
+const vovCon = require('./js_exec/saperate_VowConst');
+const oddEven = require('./js_exec/saperate_OddEven');
+const groupBy = require('./js_exec/groupBy');
+const fectorial = require('./js_exec/fectorial');
+const vovInStr = require('./js_exec/vowelInStr');
+const longestStr = require('./js_exec/longestStr_count');
+const palindrom = require('./js_exec/palindrom');
+const calc = require('./js_exec/calc');
 
 const executeQuery = (str) => {
     return new Promise((resolve, reject)=> {
@@ -57,19 +31,11 @@ const executeQuery = (str) => {
     })
 }
 
-app.use(delimeter)
-app.use(ajaxCity)
-app.use(sortPagging)
-app.use(userQuery)
-app.use(resultDatabase)
-app.use(crudUsingAjax)
-app.use(attandanceDatabase)
-
-app.get('/', (req, res)=> {
+router.get('/', (req, res)=> {
     res.render('register');
 })
 
-app.post('/setData', async(req, res)=> {
+router.post('/setData', async(req, res)=> {
     let data = req.body;
     let code = uid.rnd(12);
     let q = `insert into users (f_name, l_name, email, phone_no, activation_code) values ('${data.f_name}', '${data.l_name}', '${data.email}', '${data.phone_no}', '${code}');`;
@@ -77,7 +43,7 @@ app.post('/setData', async(req, res)=> {
     res.send({code});
 })
 
-app.get('/checkMail/:mail/:pass', async(req, res)=> {
+router.get('/checkMail/:mail/:pass', async(req, res)=> {
 
     let result = await executeQuery(`select count(*) as ct from users where email = '${req.params.mail}';`);
 
@@ -95,7 +61,6 @@ app.get('/checkMail/:mail/:pass', async(req, res)=> {
             }
 
             let token = jwt.sign(data,"manil");
-            // console.log(enc_pass);
             res.cookie("token" ,token, {maxAge: 24 * 60 * 60 * 1000});
 
 
@@ -113,7 +78,7 @@ app.get('/checkMail/:mail/:pass', async(req, res)=> {
     }
 })
 
-app.get('/activateUser/:code', async(req, res)=> {
+router.get('/activateUser/:code', async(req, res)=> {
     let q = `select created_at from users where activation_code = '${req.params.code}';`;
     let result = await executeQuery(q);
     let temp = result[0].created_at.toString().slice(4, 24)
@@ -128,7 +93,7 @@ app.get('/activateUser/:code', async(req, res)=> {
     }
 })
 
-app.post('/login', async(req, res)=> {
+router.post('/login', async(req, res)=> {
     let data = req.body;
     let salt =  uid.rnd(4);
     let pass_res = data.create+salt;
@@ -139,21 +104,20 @@ app.post('/login', async(req, res)=> {
     res.redirect('/loginPage')
 })
 
-app.get('/loginPage', (req, res)=> {
+router.get('/loginPage', (req, res)=> {
     res.render('login')
 })
 
-app.get('/success',auth, (req, res)=> {
+router.get('/success',auth, (req, res)=> {
     res.render('link')
 })
 
-app.get('/display/:prog',auth, (req, res)=> {
+router.get('/display/:prog',auth, (req, res)=> {
     res.render(req.params.prog)
 })
 
 
-app.get('/js_exec/:prog_name', (req, res)=> {
-    console.log(req.params.prog_name);
+router.get('/js_exec/:prog_name', (req, res)=> {
     switch (req.params.prog_name) {
         case 'saperate_VowCons':
             res.write("You Are In the saperate_VowCons Route\n");
@@ -260,15 +224,9 @@ app.get('/js_exec/:prog_name', (req, res)=> {
     }
 })
 
-app.get('/execQery/:q', async(req, res)=> {
+router.get('/execQery/:q', async(req, res)=> {
     let result = await executeQuery(req.params.q);
     res.send({result})
 })
 
-app.all('*', (req, res)=> {
-    res.send('Error 404 Page Not Found!');
-})
-
-app.listen(port, ()=> {
-    console.log('Listening Port : '+port);
-})
+module.exports = router

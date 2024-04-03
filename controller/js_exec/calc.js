@@ -38,7 +38,6 @@ function calc(num1, num2, operator) {
         default:
             // console.log("Entered Operator is not valid");
     }
-    // console.log(num1+" "+operator+" by "+num2+" = "+ans);
 
     return ans;
 }

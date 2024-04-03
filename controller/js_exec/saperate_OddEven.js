@@ -27,8 +27,6 @@ function checkOdd(arr) {
             oddArr.push(element);
         }
     });
-    // console.log("Array Of Odd No.s Are : "+oddArr);
-    // console.log("Array Of Even No.s Are : "+evenArr);
 
     return {oddArr, evenArr, sugg};
 }

@@ -1,14 +1,15 @@
 const router = require("express").Router();
-const mysql = require("mysql");
+// const mysql = require("mysql");
 const { route } = require("./delimeter_rout");
 const { auth } = require("./midelwer/auth");
+const con = require('../database/connection');
 
-var con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'merge_db'
-});
+// var con = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'password',
+//     database: 'merge_db'
+// });
 
 var temp=0;
 var msg='';

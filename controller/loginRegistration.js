@@ -20,9 +20,9 @@ const longestStr = require('./js_exec/longestStr_count');
 const palindrom = require('./js_exec/palindrom');
 const calc = require('./js_exec/calc');
 
-const executeQuery = (str) => {
+const executeQuery = (str, arr) => {
     return new Promise((resolve, reject)=> {
-        con.query(str, function(err, result) {
+        con.query(str, arr, function(err, result) {
             if(err) reject(err);
             else{
                 resolve(result);
@@ -38,18 +38,18 @@ router.get('/', (req, res)=> {
 router.post('/setData', async(req, res)=> {
     let data = req.body;
     let code = uid.rnd(12);
-    let q = `insert into users (f_name, l_name, email, phone_no, activation_code) values ('${data.f_name}', '${data.l_name}', '${data.email}', '${data.phone_no}', '${code}');`;
-    let result = await executeQuery(q);
+    let q = `insert into users (f_name, l_name, email, phone_no, activation_code) values (?, ?, ?, ?, ?);`;
+    let result = await executeQuery(q, [data.f_name, data.l_name, data.email, data.phone_no, code]);
     res.send({code});
 })
 
 router.get('/checkMail/:mail/:pass', async(req, res)=> {
 
-    let result = await executeQuery(`select count(*) as ct from users where email = '${req.params.mail}';`);
+    let result = await executeQuery(`select count(*) as ct from users where email = ?;`, [req.params.mail]);
 
-    let ch = await executeQuery(`select pass, salt from users where email = '${req.params.mail}';`);
+    let ch = await executeQuery(`select pass, salt from users where email = ?;`, [req.params.mail]);
     if(result[0].ct == 1 && req.params.pass.length > 1){
-        let pass_check = await executeQuery(`select pass, salt from users where email = '${req.params.mail}';`)
+        let pass_check = await executeQuery(`select pass, salt from users where email = ?;`, [req.params.mail])
         let enc_pass = md5(`${req.params.pass}`+`${pass_check[0].salt}`);
         if(enc_pass == pass_check[0].pass) {
 
@@ -79,8 +79,8 @@ router.get('/checkMail/:mail/:pass', async(req, res)=> {
 })
 
 router.get('/activateUser/:code', async(req, res)=> {
-    let q = `select created_at from users where activation_code = '${req.params.code}';`;
-    let result = await executeQuery(q);
+    let q = `select created_at from users where activation_code = ?;`;
+    let result = await executeQuery(q, [req.params.code]);
     let temp = result[0].created_at.toString().slice(4, 24)
     let old_date = new Date(temp);
     let time_diff = Math.floor((dateObject.getTime()-old_date.getTime())/60000);
@@ -88,7 +88,7 @@ router.get('/activateUser/:code', async(req, res)=> {
         res.render('password', {code:req.params.code})
     }         
     else {
-        await executeQuery(`delete from users where activation_code = '${req.params.code}';`);
+        await executeQuery(`delete from users where activation_code = ?;`, [req.params.code]);
         res.redirect('/')
     }
 })
@@ -98,8 +98,8 @@ router.post('/login', async(req, res)=> {
     let salt =  uid.rnd(4);
     let pass_res = data.create+salt;
     let pass_enc = md5(pass_res)
-    let q = `update users set pass='${pass_enc}', salt='${salt}', status='1' where activation_code = '${data.code}';`
-    await executeQuery(q);
+    let q = `update users set pass=?, salt=?, status='1' where activation_code = ?;`
+    await executeQuery(q, [pass_enc, salt, data.code]);
 
     res.redirect('/loginPage')
 })

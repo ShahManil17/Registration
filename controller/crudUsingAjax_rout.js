@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { auth } = require('./midelwer/auth');
 // const mysql = require('mysql');
 const con = require('../database/connection');
 
@@ -9,11 +10,11 @@ const con = require('../database/connection');
 //     database: 'merge_db'
 // });
 
-router.get('/crudUsingAjax', (req, res)=> {
+router.get('/crudUsingAjax', auth, (req, res)=> {
     res.render('../views/crudUsingAjax_view/home');
 })
 
-router.get('/crudUsingAjax/:bid', (req, res)=> {
+router.get('/crudUsingAjax/:bid', auth, (req, res)=> {
     res.render('../views/crudUsingAjax_view/home');
 })
 

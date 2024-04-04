@@ -1,0 +1,335 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+.main, header, footer {
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    border-bottom: 1px solid black;
+    background-color: #F0F6FF;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    margin-left: 700px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    font-size: large;
+    display: inline;
+    padding: 30px;
+    color: #0A2259;
+}
+
+.login {
+    width: 90px;
+    height: 45px;
+    font-size: large;
+    padding: 5px;
+    color: #0A2259;
+    border: 1.5px solid #0A2259;
+    background-color: white;
+}
+
+.div1, .div2, .div3, .ben, .txt_3, .div5, .custs , .cust_container, .div7, .foot{
+    display: flex;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.div1 {
+    background-color: #F0F6FF;
+}
+
+.txt {
+    padding: 60px;
+    width: 65%;
+}
+
+.help {
+    font-size: 25px;
+    padding: 15px;
+    margin: 0 5px;
+    border: 1px solid #0A2259;
+    background-color: white;
+}
+
+.orange {
+    background-color: #F2A33A;
+    color: white;
+}
+
+.down {
+    display: block;
+    margin-top: 40px;
+}
+
+.full_img {
+    width: 35%;
+}
+
+.potrait {
+    margin: 150px 0;
+}
+
+header {
+    margin: 0 10px;
+    height: 90px;
+}
+
+.logo { 
+    margin: auto;
+    width: 20%;
+}
+
+.div2 {
+    height: 170px;
+    background-color: rgb(245, 249, 255);
+}
+
+p {
+    color: #0A2259;
+}
+
+.div3 {
+    height: 850px;
+    background-color: white;
+    padding: 100px;
+}
+
+.visit_img {
+    width: 50%;
+}
+
+.txt_3 {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.ben {
+    flex-wrap: wrap;
+}
+
+.ben_con {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.price_desc {
+    text-align: center;
+}
+
+.card_container {
+    display: flex;
+    margin: 0 auto;
+}
+
+.card_cloud {
+    border: 1px solid black;
+    width: 23%;
+    margin-right: 2%;
+    padding: 10px;
+    background-color: rgb(10, 34, 89);
+}
+
+.card {
+    border: 1px solid black;
+    width: 23%;
+    margin-right: 2%;
+    padding: 10px;
+    background-color: white;
+}
+
+.reg_detail {
+    border: 1px solid black;
+    padding: 10px;
+    background-color: #F0F6FF;
+}
+
+.reg_head, .cloud_desc, .cloud_price, .cloud_btn, .reg_price, .reg_btn, .titl, .foot_cont, .foot_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg_btn {
+    width: 100%;
+}
+
+.price {
+    background-color: #F0F6FF;
+    padding: 20px;
+}
+
+.btn {
+    font-size: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.div5_lft {
+    width: 40%;
+    padding: 50px;
+}
+
+.techs {
+    width: 100%;
+    background-color: rgb(226, 234, 236);
+    color: #485575;
+    margin-bottom: 10px;
+}
+
+.tech_cont {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div5_right {
+    width: 60%;
+}
+
+.tech_row {
+    display: flex;
+    margin: 0 auto;
+}
+
+.tech_col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.more {
+    font-size: 20px;
+    padding: 20px;
+    width: 20%;
+}
+
+.card:hover {
+    background-color: #0A2259;
+    p {
+        color: white;
+    }
+    .reg_detail {
+        background-color: #6A88B6;
+        p{
+            color: white;
+        }
+    }
+}
+
+.techs:hover {
+    background-color: #F0F6FF;
+}
+
+.cust_con {
+    width: 80%;
+}
+
+.cust_arrow {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custs {
+    justify-content: center;
+    align-items: center;
+    min-width: 550px;
+
+}
+
+.cust_container {
+    overflow-x: auto;
+    overflow-x: hidden;
+}
+
+.border {
+    padding: 15px;
+    background-color: #F0F6FF;
+}
+
+.cust_rev {
+    background-color: white;
+    padding: 10px;
+    width: 500px;
+}
+
+.star , .av_img, .name, .des, .rev_con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.des {
+    margin: -25px;
+}
+
+.intro_lft {
+    width: 60%;
+    padding: 10px 100px;
+}
+
+.intro_right {
+    width: 40%;
+}
+
+.into_btn_cont {
+    display: flex;
+    justify-content: left;
+}
+
+.into_btn {
+    font-size: 25px;
+    padding: 10px;
+    margin: 20px;
+}
+
+.div7 {
+    background-color: #F0F6FF;
+}
+
+.foot_logo {
+    width: 50%;
+    padding: 40px;
+}
+
+.detail {
+    width: 50%;
+    padding: 10px;
+}
+
+.foot {
+    background-color: #0A2259;
+}
+
+.detail_row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.detail_col {
+    width: 25%;
+    margin-right: 5%;
+}

@@ -1,5 +1,3 @@
-alert('aaa')
-
 let ct = 0;
 let basic = document.getElementById('basic');
 let edu = document.getElementById('education');

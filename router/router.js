@@ -16,6 +16,10 @@ const userQuery = require('../controller/userGivenQuery_route')
 const resultDatabase = require('../controller/resultDatabase_rout')
 const crudUsingAjax = require('../controller/crudUsingAjax_rout')
 const attandanceDatabase = require('../controller/attandanceDatabase_rout')
+const fetchTask = require('../controller/fetchTask_rout')
+const ehya = require('../controller/ehya_rout')
+const awanHoster = require('../controller/awanHoster_route')
+const hireX = require('../controller/hireX_rout')
 
 const loginRegistration = require('../controller/loginRegistration')
 
@@ -26,6 +30,10 @@ route.use(userQuery)
 route.use(resultDatabase)
 route.use(crudUsingAjax)
 route.use(attandanceDatabase)
+route.use(fetchTask)
+route.use(ehya)
+route.use(awanHoster)
+route.use(hireX)
 route.use(loginRegistration)
 
 module.exports = route

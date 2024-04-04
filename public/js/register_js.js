@@ -14,8 +14,7 @@ async function generate_link() {
         document.getElementById('mailerror').innerHTML = `<p>mail is already registered</p><br>`
     }
     else {
-        let res1 = await fetch("http://localhost:8015/setData",
-        {
+        let res1 = await fetch("http://localhost:8016/setData", {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -26,6 +25,6 @@ async function generate_link() {
         document.getElementById('mailerror').innerHTML = ``;
         document.getElementById('msg').innerHTML = `Thank You For The Registration<br>Please Activate Your Account`;
         document.getElementById('msg').style.color = 'blue';
-        document.getElementById('activate').innerHTML = `<br><a href="http://localhost:8015/activateUser/${res2.code}">Activate Now</a>`;
+        document.getElementById('activate').innerHTML = `<br><a href="http://localhost:8016/activateUser/${res2.code}">Activate Now</a>`;
     }
 }

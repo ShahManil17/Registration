@@ -31,44 +31,53 @@
     <h1>Thank you for the Logging!</h1>
     <table>
         <tr>
-            <td><p><a href="/display/dynamic_table" target="_blank">Dynamic table</a></p></td>
-            <td><p><a href="/display/cucku_cube" target="_blank">Cucku Cube</a></p></td>
-            <td><p><a href="/display/tic_tac_toe" target="_blank">Tic Tac Toe</a></p></td>
-            <td><p><a href="/display/js_exec" target="_blank">JavaScript Events</a></p></td>
+            <td onclick="act('/display/dynamic_table')"><p>Dynamic table</p></td>
+            <td onclick="act('/display/cucku_cube')"><p>Cucku Cube</p></td>
+            <td onclick="act('/display/tic_tac_toe')"><p>Tic Tac Toe</p></td>
+            <td onclick="act('/display/js_exec')"><p>JavaScript Events</p></td>
         </tr>
         <tr>
-            <td colspan="4">
-                <p onclick="clk()">JavaScript Exersice</p>
+            <td colspan="4" onclick="clk()">
+                <p>JavaScript Exersice</p>
                 <p style="display: none;" id="hide">
-                    <!-- <a href=""></a> -->
-                    <a href="/js_exec/saperate_VowCons?str=Manil">Saperate Vowels & Consonents</a>&nbsp;&nbsp;&nbsp;
-                    <a href="/js_exec/saperate_OddEven?arr=1,8,56,4,2,3">Saperate Odd & Even</a>&nbsp;&nbsp;&nbsp;
-                    <a href="/js_exec/groupBy">Grouping With Obj Key</a>&nbsp;&nbsp;&nbsp;
-                    <a href="/js_exec/factorial?n=6">Fectorial</a>&nbsp;&nbsp;&nbsp;
-                    <a href="/js_exec/vovInStr?arr=Manil,Shah">Vowel Count Of Every String</a>&nbsp;&nbsp;&nbsp;
-                    <a href="/js_exec/longestStr_count?arr=Manil,Shah">Vowel Count Of Longest String</a>&nbsp;&nbsp;&nbsp;
-                    <a href="/js_exec/palindrom?str=abccba">Palindrom</a>&nbsp;&nbsp;&nbsp;
-                    <a href="/js_exec/calc?arr=10,5,add">Basic Calculator</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/saperate_VowCons?str=Manil" target="_blank">Saperate Vowels & Consonents</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/saperate_OddEven?arr=1,8,56,4,2,3" target="_blank">Saperate Odd & Even</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/groupBy" target="_blank">Grouping With Obj Key</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/factorial?n=6" target="_blank">Fectorial</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/vovInStr?arr=Manil,Shah" target="_blank">Vowel Count Of Every String</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/longestStr_count?arr=Manil,Shah" target="_blank">Vowel Count Of Longest String</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/palindrom?str=abccba" target="_blank">Palindrom</a>&nbsp;&nbsp;&nbsp;
+                    <a href="/js_exec/calc?arr=10,5,add" target="_blank">Basic Calculator</a>&nbsp;&nbsp;&nbsp;
                 </p>
             </td>
         </tr>
         <tr>
-            <td><p><a href="/display/calc" target="_blank">Basic Calculator</a></p></td>
-            <td><p><a href="/delimeter" target="_blank">Delimeter Search</a></p></td>
-            <td><p><a href="/ajaxCity" target="_blank">Ajax City Task</a></p></td>
-            <td><p><a href="/showDetails" target="_blank">Database Sorting With Paggination</a></p></td>
+            <td onclick="act('/display/calc')"><p>Basic Calculator</p></td>
+            <td onclick="act('/delimeter')"><p>Delimeter Search</p></td>
+            <td onclick="act('/ajaxCity')"><p>Ajax City Task</p></td>
+            <td onclick="act('/showDetails')"><p>Database Sorting With Paggination</p></td>
         </tr>
         <tr>
-            <td><p><a href="/userQuery" target="_blank">User Given Query With Paggination</a></p></td>
-            <td><p><a href="/resultDatabase" target="_blank">Result Database</a></p></td>
-            <td><p><a href="/crudUsingAjax" target="_blank">Crud Using Ajax</a></p></td>
-            <td><p><a href="/attandanceDatabase" target="_blank">Attandance Database</a></p></td>
+            <td onclick="act('/userQuery')"><p>User Given Query With Paggination</p></td>
+            <td onclick="act('/resultDatabase')"><p>Result Database</p></td>
+            <td onclick="act('/crudUsingAjax')"><p>Crud Using Ajax</p></td>
+            <td onclick="act('/attandanceDatabase')"><p>Attandance Database</p></td>
+        </tr>
+
+        <tr>
+            <td onclick="act('/fetchTask')"><p>Fetch-Promise Task</p></td>
+            <td onclick="act('/ehya')"><p>Ehya HTML</p></td>
+            <td onclick="act('/awanHoster')"><p>AwanHoster HTML</p></td>
+            <td onclick="act('/hireX')"><p>HireX HTML</p></td>
         </tr>
     </table>
 
     <script>
         function clk() {
             document.getElementById('hide').style.display = 'block';
+        }
+        function act(url) {
+            window.open(`${window.location.origin}${url}`, '_blank')
         }
     </script>
 

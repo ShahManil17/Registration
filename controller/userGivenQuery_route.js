@@ -1,15 +1,7 @@
 const router = require("express").Router();
-// const mysql = require("mysql");
 const { route } = require("./delimeter_rout");
 const { auth } = require("./midelwer/auth");
 const con = require('../database/connection');
-
-// var con = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'password',
-//     database: 'merge_db'
-// });
 
 var temp=0;
 var msg='';
@@ -37,7 +29,7 @@ router.post('/show',auth, (req, res)=> {
             if(err) {
                 temp=-1;
                 msg=`Previous Query can't be executed`;
-                res.render('query', {temp:temp, msg:msg})
+                res.render('../views/userGivenQuery_view/query', {temp:temp, msg:msg})
             }
             else {
                 ct=0;
@@ -83,7 +75,7 @@ router.get('/move',auth, (req, res)=> {
         con.query(que, function(err, result, fields) {
                 ct=result.length-5;
                 lmt=ct+5; 
-                no=Math.floor(ct/5)+1;
+                no=Math.ceil(ct/5)+1;
             if(result.length%5 != 0) {
                 ct = result.length-(result.length%5);
             }

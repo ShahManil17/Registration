@@ -1,0 +1,226 @@
+/* .sec1 {
+    max-width: 1440px;
+    margin
+} */
+
+.sec3 {
+    margin-top: 10px;
+}
+
+.main {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+ul {
+    display: inline;
+    list-style: none;
+}
+
+li {
+    float: right;
+    display: inline;
+    font-size: 25px;
+    padding: 20px;
+}
+
+.images {
+    float: left;
+    margin: 0 auto;
+    width: 47%;
+}
+
+h1 {
+    color: rgb(90, 113, 132);
+    font-size: 75px;
+}
+
+.home_p {
+    font-size: 30px;
+    color: rgb(90, 113, 132, 0.7);
+}
+
+.txt {
+    padding: 30px 100px 0 0;
+}
+
+.home {
+    padding: 150px 0;
+    height: 595px;
+}
+
+.btn {
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: #1565D8;
+    color: white;
+    font-size: 40px;
+}
+
+select,
+input {
+    background-color: white;
+}
+
+input {
+    border-radius: 5px;
+    border-color: #1565D8;
+    font-size: 25px;
+}
+
+.services {
+    padding: 50px 0 0 0;
+    text-align: center;
+    justify-content: center;
+    height: 500px;
+}
+
+.benifits {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 40px;
+    float: left;
+    width: 30%;
+    margin-right: 5%;
+}
+
+.benifits_lst {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 40px;
+    float: left;
+    width: 30%;
+}
+
+.col {
+    float: left;
+    width: 26%;
+    margin-right: 3%;
+    border: 0.5px solid rgb(128, 128, 128, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+}
+
+.sec2 {
+    background-color: #F3F7FD;
+    height: 950px;
+    padding-bottom: 20px;
+}
+
+.serv {
+    margin: 10px 0px 15px 45px;
+}
+
+.tips {
+    padding: 50px 0 0 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.tip1 {
+    float: left;
+    width: 47%;
+    margin-right: 6%;
+}
+
+.tip2 {
+    float: left;
+    width: 47%;
+}
+
+.tip_container {
+    margin-top: 20px;
+    height: 1000px;
+    margin-bottom: 15px;
+}
+
+.col2 {
+    float: left;
+    width: 24%;
+    margin-right: 5.5%;
+    padding: 25px;
+}
+
+hr {
+    width: 80%;
+    opacity: 0.2;
+}
+
+.col3 {
+    float: left;
+    text-align: center;
+    width: 22%;
+    margin: 5%;
+}
+
+.col3_lst {
+    height: 200px;
+    margin-top: 90px;
+    text-align: center;
+    float: left;
+}
+
+.rate {
+    margin-top: 30px;
+}
+
+.sec_lst {
+    margin-top: 20px;
+    background-color: #0D2436;
+}
+
+.foot {
+    display: flex;
+    color: white;
+    padding: 5px;
+}
+
+.foot_l {
+    float: left;
+    width: 35%;
+    padding: 35px;
+}
+
+.foot_r {
+    float: left;
+    width: 65%;
+    padding: 35px;
+}
+
+.tip1 {
+    position: relative;
+}
+
+.content {
+    position: absolute;
+    bottom: 30px;
+    left: 150px;
+    font-size: 40px;
+    color: white;
+}
+
+.tip2 {
+    position: relative;
+}
+
+.content_right {
+    width: 600px;
+    position: absolute;
+    left: 20px;
+    bottom: 30px;
+    font-size: 35px;
+    color: white;
+}
+
+select {
+    background-color: white;
+    border: 0px;
+    font-size: 25px;
+}
+
+.DIV_SRV {
+    margin: 20px;
+}

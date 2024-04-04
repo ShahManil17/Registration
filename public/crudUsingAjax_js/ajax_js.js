@@ -21,22 +21,26 @@ if(ct == 0) {
 }
 
 function basic_validation() {
+    let errorArr = [];
+    let gflag = true;
     
     var blank = ['f_name', 'l_name', 'designation', 'mail', 'phone_no', 'add1', 'city', 'zip', 'state', 'dob'];
     for(let i=0; i<blank.length; i++) {
         if(document.getElementById(blank[i]).value=="") {
-            document.getElementById('msg').innerHTML=blank[i]+' Can Not Be Blank\n';
-            document.getElementById(blank[i]).focus();
-            return false;
+            // let ele = document.getElementById(blank[i]);
+            // ele.insertAdjacentHTML("afterend", `<span style="color: red;"> Invalid Input</span>`);
+            errorArr.push(`${blank[i]}`);
+            // document.getElementById(blank[i]).focus();
+            gflag = false;
         }
     }
 
     var simpNo = ['zip'];
     for(let i=0; i<simpNo.length; i++) {
-        if(isNaN(document.getElementById(simpNo[i]).value)) {
-            document.getElementById('msg').innerHTML='Entered Number is Invalid at '+simpNo[i]+'\n';
-            document.getElementById(simpNo[i]).focus();
-            return false;  
+        if(isNaN(document.getElementById(simpNo[i]).value) && !errorArr.includes(`${simpNo[i]}`)) {
+            errorArr.push(`${simpNo[i]}`);
+            // document.getElementById(simpNo[i]).focus();
+            gflag = false;  
         }
     }
 
@@ -44,9 +48,11 @@ function basic_validation() {
     for(let i=0; i<num.length; i++) {
         if(document.getElementById(num[i]).value.trim()!='') {
             if(document.getElementById(num[i]).value.length!=10 || isNaN(document.getElementById(num[i]).value)) {
-                document.getElementById('msg').innerHTML='Entered Number is Invalid at '+num[i]+'\n';
-                document.getElementById(num[i]).focus();
-                return false;
+                if(!errorArr.includes(`phone_no`)) {
+                    errorArr.push('phone_no');
+                    // document.getElementById(num[i]).focus();
+                    gflag = false;
+                }
             }
         }
     }
@@ -55,10 +61,10 @@ function basic_validation() {
     for(let i=0; i<notNum.length; i++) {
         var val = document.getElementById(notNum[i]).value;
         for(let j=0; j<val.length; j++) {
-            if(val[j]!=' ' && !isNaN(val[j])) {
-                document.getElementById('msg').innerHTML='Invalid Input at '+notNum[i]+'\n';
-                document.getElementById(notNum[i]).focus()
-                return false;
+            if(val[j]!=' ' && !isNaN(val[j]) && !errorArr.includes(`${val[j]}`)) {
+                errorArr.push(notNum[i]);
+                // document.getElementById(notNum[i]).focus()
+                gflag = false;
             }
         }                
     }
@@ -67,9 +73,11 @@ function basic_validation() {
     for(let i=0; i<mail.length; i++) {
         var val = document.getElementById(mail[i]).value;
         if(!val.includes('@') || !val.includes('.')) {
-            document.getElementById('msg').innerHTML='Invalid Mail-id\n';
-            document.getElementById(mail[i]).focus()
-            return false;
+            if(!errorArr.includes(`mail`)) {
+                errorArr.push('mail');
+                // document.getElementById(mail[i]).focus()
+                gflag = false;
+            }
         }
     }
 
@@ -83,54 +91,75 @@ function basic_validation() {
             }
         }
         
-        if(flag == false) {
-            document.getElementById('msg').innerHTML='Select Gender\n';
-            return false;
+        if(flag == false && !errorArr.includes(`gender`)) {
+            errorArr.push('gender');
+            gflag = false;
         }
     }
 
     var date = ['dob'];
     for(let i=0; i<date.length; i++) {
         var val = document.getElementById(date[i]).value;
-        if(val.length != 10) {
-            document.getElementById('msg').innerHTML='Invalid Date at '+date[i]+'\n';
-            document.getElementById(date[i]).focus()
-            return false;
+        if(val.length != 10 && !errorArr.includes(`dob`)) {
+            errorArr.push('dob');
+            // document.getElementById(date[i]).focus()
+            gflag = false;
         }
         for(let j=0; j<val.length; j++) {
             if((j==4 && val[j]!='-' && val[j]!='/') || (j==7 && val[j]!='-' && val[j]!='/')) {
-                document.getElementById('msg').innerHTML='Invalid Date at '+date[i]+'\n';
-                document.getElementById(date[i]).focus()
-                return false;
+                if(!errorArr.includes(`dob`)) {
+                    errorArr.push('dob');
+                    // document.getElementById(date[i]).focus()
+                    gflag = false;
+                }
             }
-            else if(j!=4 && j!=7 && isNaN(val[j])) {
-                document.getElementById('msg').innerHTML='Invalid Date at '+date[i]+'\n';
-                document.getElementById(date[i]).focus()
-                return false;
+            else if(j!=4 && j!=7 && isNaN(val[j]) && !errorArr.includes(`dob`)) {
+                errorArr.push('dob');
+                // document.getElementById(date[i]).focus()
+                gflag = false;
             }
         }
     }
 
     var dropdown = ['status'];
     for(let i=0; i<dropdown.length; i++) {
-        if(document.getElementById(dropdown[i]).value == 'default') {
-            document.getElementById('msg').innerHTML='Invalid Input at '+dropdown[i]+'\n';
-            document.getElementById(dropdown[i]).focus();
-            return false;
+        if(document.getElementById(dropdown[i]).value == 'default' && !errorArr.includes(`status`)) {
+            errorArr.push('status');
+            // document.getElementById(dropdown[i]).focus();
+            gflag = false;
         }
     }
 
-    return true;
+    if(errorArr[0]) {
+        document.getElementById(errorArr[0]).focus();
+    }
+    if(errorArr.length >= 1) {
+        errorArr.forEach(element => {
+            var ele = document.getElementById(element);
+            var txt=document.createElement("span");
+            txt.innerHTML=`<span style="color: red;"> Invalid Input</span>`;
+            if(ele.nextSibling){
+                ele.parentNode.insertBefore(txt,ele.nextSibling);
+              }else{
+                ele.parentNode.appendChild(txt);
+            }
+        });
+    }
+
+    return gflag;
 }
 
 function validate_education() {
 
+    let gflag = true;
+    let errorArr = [];
+
     var blank = ['board_name', 'pass_year', 'percentage', 'hsc_board', 'hsc_year', 'hsc_percentage', 'bachelor_board', 'bachelor_year', 'bachelor_percentage', 'master_name', 'master_year', 'master_percentage'];
     for(let i=0; i<blank.length; i++) {
         if(document.getElementById(blank[i]).value=="") {
-            document.getElementById('msg').innerHTML=blank[i]+' Can Not Be Blank\n';
-            document.getElementById(blank[i]).focus();
-            return false;
+            errorArr.push(`${blank[i]}`);
+            // document.getElementById(blank[i]).focus();
+            gflag = false;
         }
     }
 
@@ -138,10 +167,10 @@ function validate_education() {
     for(let i=0; i<notNum.length; i++) {
         var val = document.getElementById(notNum[i]).value;
         for(let j=0; j<val.length; j++) {
-            if(val[j]!=' ' && !isNaN(val[j])) {
-                document.getElementById('msg').innerHTML='Invalid Input at '+notNum[i]+'\n';
-                document.getElementById(notNum[i]).focus()
-                return false;
+            if(val[j]!=' ' && !isNaN(val[j]) && !errorArr.includes(`${val[j]}`)) {
+                errorArr.push(`${notNum[i]}`);
+                // document.getElementById(notNum[i]).focus()
+                gflag =  false;
             }
         }                
     }
@@ -150,34 +179,57 @@ function validate_education() {
     for(let i=0; i<year.length; i++) {
         var val = document.getElementById(year[i]).value;
         if(val.length != 4 || isNaN(val)) {
-            document.getElementById('msg').innerHTML='Invalid Year'+year[i]+'\n';
-            document.getElementById(year[i]).focus()
-            return false;
-        }
+            if(!errorArr.includes(`${year[i]}`)) {
+                errorArr.push(`${year[i]}`);
+                // document.getElementById(year[i]).focus()
+                gflag = false;
+            }
+            }
     }
 
     var per = ['percentage', 'hsc_percentage', 'bachelor_percentage', 'master_percentage'];
     for(let i=0; i<per.length; i++) {
         if(document.getElementById(per[i]).value > 100 || isNaN(document.getElementById(per[i]).value)) {
-            document.getElementById('msg').innerHTML='Invalid Percentage Entered at '+per   [i]+'\n';
-            document.getElementById(per[i]).focus();
-            return false;
+            if(!errorArr.includes(`${per[i]}`)) {  
+                errorArr.push(`${per[i]}`);
+                // document.getElementById(per[i]).focus();
+                gflag = false;
+            }
         }
     }
 
-    return true;
+    if(errorArr[0]) {
+        document.getElementById(errorArr[0]).focus();
+    }
+    if(errorArr.length >= 1) {
+        errorArr.forEach(element => {
+            var ele = document.getElementById(element);
+            var txt=document.createElement("span");
+            txt.innerHTML=`<span style="color: red;"> Invalid Input</span>`;
+            if(ele.nextSibling){
+                ele.parentNode.insertBefore(txt,ele.nextSibling);
+              }else{
+                ele.parentNode.appendChild(txt);
+            }
+        });
+    }
+
+    return gflag;
 }
 
 function validate_exp() {
+
+    let gflag = true;
+    let errorArr = [];
 
     var notNum = ['comp_name1', 'comp_des1', 'comp_name2', 'comp_des2', 'comp_name3', 'comp_des3'];
     for(let i=0; i<notNum.length; i++) {
         var val = document.getElementById(notNum[i]).value;
         for(let j=0; j<val.length; j++) {
-            if(val[j]!=' ' && !isNaN(val[j])) {
-                document.getElementById('msg').innerHTML='Invalid Input at '+notNum[i]+'\n';
-                document.getElementById(notNum[i]).focus()
-                return false;
+            if(val[j]!=' ' && !isNaN(val[j]) && !errorArr.includes(`${notNum[i]}`)) {
+                errorArr.push(`${notNum[i]}`);
+                // document.getElementById(notNum[i]).focus()
+                gflag = false;
             }
         }                
     }
@@ -196,38 +248,65 @@ function validate_exp() {
         for(let i=0; i<exp[temp].length; i++) {
             if(i==0 || i==1) {
                 if(document.getElementById(exp[temp][i]).value.trim()=='' || !isNaN(document.getElementById(exp[temp][i]).value)) {
-                    document.getElementById('msg').innerHTML='Invalid Input at '+exp[temp][i]+'\n';
-                    document.getElementById(exp[temp][i]).focus();
-                    return false;
+                    if(!errorArr.includes(`${exp[temp][i]}`)) {
+                        errorArr.push(`${exp[temp][i]}`);
+                        // document.getElementById(exp[temp][i]).focus();
+                        gflag = false;
+                    }
                 }
             }
             else {
                 val = document.getElementById(exp[temp][i]).value
                 if(val.length != 10) {
-                    document.getElementById('msg').innerHTML='Invalid Date at '+date[i]+'\n';
-                    document.getElementById(exp[temp][i]).focus()
-                    return false;
+                    if(!errorArr.includes(`${exp[temp][i]}`)) {
+                        errorArr.push(`${exp[temp][i]}`);
+                        // document.getElementById(exp[temp][i]).focus();
+                        gflag = false;
+                    }
                 }
                 for(let j=0; j<val.length; j++) {
                     if((j==4 && val[j]!='-' && val[j]!='/') || (j==7 && val[j]!='-' && val[j]!='/')) {
-                        document.getElementById('msg').innerHTML='Invalid Date at '+exp[temp][i]+'\n';
-                        document.getElementById(exp[temp][i]).focus()
-                        return false;
+                        if(!errorArr.includes(`${exp[temp][i]}`)) {
+                            errorArr.push(`${exp[temp][i]}`);
+                            // document.getElementById(exp[temp][i]).focus();
+                            gflag = false;
+                        }
                     }
                     else if(j!=4 && j!=7 && isNaN(val[j])) {
-                        document.getElementById('msg').innerHTML='Invalid Date at '+exp[temp][i]+'\n';
-                        document.getElementById(exp[temp][i]).focus()
-                        return false;
+                        if(!errorArr.includes(`${exp[temp][i]}`)) {
+                            errorArr.push(`${exp[temp][i]}`);
+                            // document.getElementById(exp[temp][i]).focus();
+                            gflag = false;
+                        }
                     }
                 }
             }
         }
     }
 
-    return true;
+    if(errorArr[0]) {
+        document.getElementById(errorArr[0]).focus();
+    }
+    if(errorArr.length >= 1) {
+        errorArr.forEach(element => {
+            var ele = document.getElementById(element);
+            var txt=document.createElement("span");
+            txt.innerHTML=`<span style="color: red;"> Invalid Input</span>`;
+            if(ele.nextSibling){
+                ele.parentNode.insertBefore(txt,ele.nextSibling);
+              }else{
+                ele.parentNode.appendChild(txt);
+            }
+        });
+    }
+
+    return gflag;
 }
 
 function validate_techEdu() {
+
+    let gflag = true;
+    let errorArr = [];
 
     var lang = ['hindi', 'english', 'gujarati'];
     for(let i=0; i<lang.length; i++) {
@@ -238,8 +317,10 @@ function validate_techEdu() {
         
         for(let j=0; j<3; j++) {
             if((lang_lbl!=null && (lang_val1==null && lang_val2==null && lang_val3==null)) || (lang_lbl==null && (lang_val1!=null || lang_val2!=null || lang_val3!=null))) {
-                document.getElementById('msg').innerHTML='Invalid Input at '+lang[i]+'\n';
-                return false;
+                if(!errorArr.includes(`${lang[i]}`)) { 
+                    errorArr.push(`${lang[i]}`);
+                    gflag = false;
+                }
             }             
         }
     }   
@@ -249,11 +330,31 @@ function validate_techEdu() {
         var tech_radio = document.querySelector(`input[name='`+tech[i]+`']:checked`);
         var tech_chk = document.querySelector(`input[id='`+tech[i]+`_lbl']:checked`);
         if((tech_radio && !tech_chk) || (!tech_radio && tech_chk)) {
-            document.getElementById('msg').innerHTML='Invalid Input at '+tech[i]+'\n';
-            return false;
+            if(!errorArr.includes(`${tech[i]}_lbl`)) {
+                errorArr.push(`${tech[i]}_lbl`);
+                gflag = false;
+            }
         }
     }
-    return true;
+
+    if(errorArr[0]) {
+        console.log(errorArr[0]);
+        document.getElementById(errorArr[0]).focus();
+    }
+    if(errorArr.length >= 1) {
+        errorArr.forEach(element => {
+            var ele = document.getElementById(element);
+            var txt=document.createElement("span");
+            txt.innerHTML=`<span style="color: red;"> Invalid Input</span>`;
+            if(ele.nextSibling){
+                ele.parentNode.insertBefore(txt,ele.nextSibling);
+              }else{
+                ele.parentNode.appendChild(txt);
+            }
+        });
+    }
+
+    return gflag;
 }
 
 function prev() {

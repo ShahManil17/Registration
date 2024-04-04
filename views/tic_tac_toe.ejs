@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,21 @@
         table {
             background-color: lightblue;
         }
+
         tr, td {
             border: 2px solid black;
         }
+        h1 {
+            text-align: center;
+        }
     </style>
 </head>
+
 <body style="background-color: lightyellow;">
-    <h1><center><span style="background-color: rgb(177, 160, 237)">Manil Shah - 24DEV040</span></center></h1>
-    <center><h1><b><u>Tic-Tac-Toe</u></b></h1></center>
+    <h1><span style="background-color: rgb(177, 160, 237);">Manil Shah - 24DEV040</span></h1>
+        
+    <h1><b><u>Tic-Tac-Toe</u></b></h1>
+
     <br><br><br>
     <table cellspacing="0" cellpadding="70" align="center">
         <tr>
@@ -35,37 +43,38 @@
         </tr>
     </table>
     <script>
-        var ct=1;
-        var zero_array=Array();
-        var x_array=Array();
+        var ct = 1;
+        var zero_array = Array();
+        var x_array = Array();
 
         function act(id) {
 
-            if(ct%2==1) {
-                if(document.getElementById(id).innerHTML=='') {
-                    document.getElementById(id).innerHTML="<font size='20px'><b>0</b></font>"
+            if (ct % 2 == 1) {
+                if (document.getElementById(id).innerHTML == '') {
+                    document.getElementById(id).innerHTML = "<font size='20px'><b>0</b></font>"
                     zero_array.push(id);
                     ct++;
                 }
             }
             else {
-                if(document.getElementById(id).innerHTML=='') {
-                    document.getElementById(id).innerHTML="<font size='20px'><b>X</b></font>"
+                if (document.getElementById(id).innerHTML == '') {
+                    document.getElementById(id).innerHTML = "<font size='20px'><b>X</b></font>"
                     x_array.push(id);
                     ct++;
                 }
             }
 
-            if((zero_array.includes("1") && zero_array.includes("2") && zero_array.includes("3")) || (zero_array.includes("4") && zero_array.includes("5") && zero_array.includes("6")) || (zero_array.includes("7") && zero_array.includes("8") && zero_array.includes("9")) || (zero_array.includes("1") && zero_array.includes("4") && zero_array.includes("7")) || (zero_array.includes("2") && zero_array.includes("5") && zero_array.includes("8")) || (zero_array.includes("3") && zero_array.includes("6") && zero_array.includes("9")) || (zero_array.includes("1") && zero_array.includes("5") && zero_array.includes("9")) || (zero_array.includes("3") && zero_array.includes("5") && zero_array.includes("7"))) {
+            if ((zero_array.includes("1") && zero_array.includes("2") && zero_array.includes("3")) || (zero_array.includes("4") && zero_array.includes("5") && zero_array.includes("6")) || (zero_array.includes("7") && zero_array.includes("8") && zero_array.includes("9")) || (zero_array.includes("1") && zero_array.includes("4") && zero_array.includes("7")) || (zero_array.includes("2") && zero_array.includes("5") && zero_array.includes("8")) || (zero_array.includes("3") && zero_array.includes("6") && zero_array.includes("9")) || (zero_array.includes("1") && zero_array.includes("5") && zero_array.includes("9")) || (zero_array.includes("3") && zero_array.includes("5") && zero_array.includes("7"))) {
                 alert("Zero Wins the Game");
             }
-            else if((x_array.includes("1") && x_array.includes("2") && x_array.includes("3")) || (x_array.includes("4") && x_array.includes("5") && x_array.includes("6")) || (x_array.includes("7") && x_array.includes("8") && x_array.includes("9")) || (x_array.includes("1") && x_array.includes("4") && x_array.includes("7")) || (x_array.includes("2") && x_array.includes("5") && x_array.includes("8")) || (x_array.includes("3") && x_array.includes("6") && x_array.includes("9")) || (x_array.includes("1") && x_array.includes("5") && x_array.includes("9")) || (x_array.includes("3") && x_array.includes("5") && x_array.includes("7"))) {
+            else if ((x_array.includes("1") && x_array.includes("2") && x_array.includes("3")) || (x_array.includes("4") && x_array.includes("5") && x_array.includes("6")) || (x_array.includes("7") && x_array.includes("8") && x_array.includes("9")) || (x_array.includes("1") && x_array.includes("4") && x_array.includes("7")) || (x_array.includes("2") && x_array.includes("5") && x_array.includes("8")) || (x_array.includes("3") && x_array.includes("6") && x_array.includes("9")) || (x_array.includes("1") && x_array.includes("5") && x_array.includes("9")) || (x_array.includes("3") && x_array.includes("5") && x_array.includes("7"))) {
                 alert("X Wins the Game");
             }
-            else if(ct==10) {
+            else if (ct == 10) {
                 alert("Match is Drawn");
             }
         }
     </script>
 </body>
+
 </html>

@@ -5,7 +5,12 @@ exports.auth =(req,res,next)=> {
     if(token) {
         try {
             const decode = jwt.verify(token, "manil")
-            next();
+            if(decode.email != '') {    
+                next();
+            }
+            else {
+                res.redirect("/loginPage")
+            }
         } catch (error) {
             res.redirect("/loginPage")
         }
